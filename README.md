@@ -75,3 +75,8 @@ The lowest FID score achieved during training was 2.16, occurring at epoch 1800.
 </p>
 
 Using the epoch-1 800 checkpoint, we generate samples following the official sampling script. It is worth noting that, due to the resolution of the CIFAR-10 dataset being $32 \times 32$, the generated samples may appear visually less detailed or sharp to the human eye.
+
+
+# References
+- [1] [facebookresearch/flow_matching](https://github.com/facebookresearch/flow_matching)
+- [2] [dome272/Flow-Matching](https://github.com/dome272/Flow-Matching)
