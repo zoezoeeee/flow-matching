@@ -1,6 +1,6 @@
 This repository contains two experiments from my master’s thesis, **Flow Matching for Generative Modeling**.
 
-# Experiment 1
+## Experiment 1
 
 **Dataset.** The dataset consists of a two-dimensional point cloud arranged in a checkerboard pattern. This pattern clearly reveals whether the model has learned the correct paths, making it a popular choice for evaluating generative models in low dimensions.
 
@@ -12,10 +12,10 @@ This repository contains two experiments from my master’s thesis, **Flow Match
 
 From the loss curve, we observe stable convergence of the training process. From the path visualization, we see that the initially noisy samples are progressively transported to match the target distribution, confirming that the model captures meaningful vector fields.
 
-# Experiment 2
+## Experiment 2
 In this experiment we reproduce the training procedure demonstrated in the `examples/image` folder of [facebookresearch/flow_matching repository](https://github.com/facebookresearch/flow_matching), using the CIFAR-10 dataset. The environment is prepared in two steps.
 
-## Step 1: Build a Docker image.
+### Step 1: Build a Docker image.
 To guarantee a consistent, GPU-accelerated workspace we construct a CUDA-enabled Docker image that bundles Python 3.10, PyTorch and Jupyter Notebook.
 
 ```
@@ -78,6 +78,6 @@ The lowest FID score achieved during training was 2.16, occurring at epoch 1800.
 Using the epoch-1 800 checkpoint, we generate samples (experiment2.ipynb) following the official sampling script in. It is worth noting that, due to the resolution of the CIFAR-10 dataset being $32 \times 32$, the generated samples may appear visually less detailed or sharp to the human eye.
 
 
-# References
+## References
 - [1] [facebookresearch/flow_matching](https://github.com/facebookresearch/flow_matching)
 - [2] [dome272/Flow-Matching](https://github.com/dome272/Flow-Matching)
