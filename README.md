@@ -13,7 +13,7 @@ This repository contains two experiments from my master’s thesis, **Flow Match
 From the loss curve, we observe stable convergence of the training process. From the path visualization, we see that the initially noisy samples are progressively transported to match the target distribution, confirming that the model captures meaningful vector fields.
 
 # Experiment 2
-In this experiment we reproduce the training procedure demonstrated in the `examples/image` folder of the official \href{https://github.com/facebookresearch/flow_matching}{\texttt{facebookresearch/flow\_matching}} repository, using the CIFAR-10 dataset. The environment is prepared in two steps.
+In this experiment we reproduce the training procedure demonstrated in the `examples/image` folder of the official \href{https://github.com/facebookresearch/flow_matching} repository, using the CIFAR-10 dataset. The environment is prepared in two steps.
 
 ## Step 1: Build a Docker image.
 To guarantee a consistent, GPU-accelerated workspace we construct a CUDA-enabled Docker image that bundles Python 3.10, PyTorch and Jupyter Notebook.
