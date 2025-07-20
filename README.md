@@ -45,19 +45,19 @@ Inside the running container, we install Miniconda and create a dedicated Conda 
 conda env create -f environment.yml
 ```
 
-Then, navigate to the \texttt{examples/image} directory and install additional example-specific packages:
+Then, navigate to the `examples/image` directory and install additional example-specific packages:
 
 ```
 cd examples/image
 pip install -r requirements.txt
 ```
 ### Model Training 
-With the environment activated (\texttt{conda activate flow\_matching}), we follow the official commands to launch training on CIFAR-10. As our experiments were conducted on a single-GPU workstation rather than a multi-node cluster, we ran training using \texttt{python train.py} instead of \texttt{python submitit\_train.py}, and omitted the \texttt{--nodes} flag accordingly.
+With the environment activated (`conda activate flow\_matching`), we follow the official commands to launch training on CIFAR-10. As our experiments were conducted on a single-GPU workstation rather than a multi-node cluster, we ran training using `python train.py` instead of `python submitit\_train.py`, and omitted the `--nodes` flag accordingly.
 
-On an Nvidia T1000 (8 GB VRAM), using the repository's default hyperparameters caused a CUDA out-of-memory (OOM) error during the first forward pass. Reducing the mini-batch size to \texttt{32} avoided the OOM issue but resulted in a \texttt{ValueError: Loss is nan}. Further reducing the batch size to \texttt{16} enabled stable training; however, the estimated wall-clock time for 3,000 epochs was approximately \(350\) days, making this setup infeasible.
+On an Nvidia T1000 (8 GB VRAM), using the repository's default hyperparameters caused a CUDA out-of-memory (OOM) error during the first forward pass. Reducing the mini-batch size to `32` avoided the OOM issue but resulted in a `ValueError: Loss is nan`. Further reducing the batch size to `16` enabled stable training; however, the estimated wall-clock time for 3,000 epochs was approximately `350` days, making this setup infeasible.
 
 
-Upgrading to an RTX 4090 (24 GB VRAM) allowed us to restore the original configuration (\texttt{batch\_size = 64}) without memory issues. Under this setting, the full 3,000-epoch training was completed in approximately \texttt{<4 days, 11 hours, 44 minutes>}. Unless otherwise specified, all results reported in this thesis are based on this configuration.
+Upgrading to an RTX 4090 (24 GB VRAM) allowed us to restore the original configuration (`batch_size = 64`) without memory issues. Under this setting, the full 3,000-epoch training was completed in approximately `4 days, 11 hours, 44 minutes`. 
 
 ### Evaluation
 
@@ -67,14 +67,13 @@ Upgrading to an RTX 4090 (24 GB VRAM) allowed us to restore the original configu
 
 The training loss decreases steadily throughout, indicating stable optimization. The FID shows a sharp drop during the early stages and gradually converges, reaching its lowest value around epoch 1800. This suggests that although the model continues to optimize the training objective, the perceptual quality of the generated images improves more slowly and begins to plateau earlier. The training loss and FID do not improve in sync, highlighting the importance of monitoring multiple evaluation signals from different perspectives.
 
-
 The lowest FID score achieved during training was 2.16, occurring at epoch 1800. For comparison, the original repository reports a minimum FID of 2.07, which also occurred at epoch 1800.
 
 <p align="center">
 <img align="middle" src="./samples.png" height="400" />
 </p>
 
-Using the epoch-1 800 checkpoint, we generate samples following the official sampling script. It is worth noting that, due to the resolution of the CIFAR-10 dataset being $32 \times 32$, the generated samples may appear visually less detailed or sharp to the human eye.
+Using the epoch-1 800 checkpoint, we generate samples (experiment2.ipynb) following the official sampling script in. It is worth noting that, due to the resolution of the CIFAR-10 dataset being $32 \times 32$, the generated samples may appear visually less detailed or sharp to the human eye.
 
 
 # References
